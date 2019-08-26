@@ -1,0 +1,26 @@
+{
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon main.js --ignore 'output/*'",
+    "build": "node main.js",
+    "clean": "rm -rf output/*"
+  },
+  "dependencies": {
+    "cli-progress": "^3.0.0",
+    "enquirer": "^2.3.1",
+    "eslint-plugin-import": "^2.18.2",
+    "filesize": "^4.1.2",
+    "jetty": "^0.2.1",
+    "ora": "^3.4.0",
+    "prompt-checkbox": "^2.2.0",
+    "xls-to-json": "^0.5.2",
+    "xlsx": "^0.15.0",
+    "xlsx-parse-json": "^3.0.2",
+    "xlsx-to-json": "^0.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0"
+  }
+}
