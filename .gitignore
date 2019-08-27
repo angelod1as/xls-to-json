@@ -1,6 +1,6 @@
 output/
-input/
 input/*
+!input/.gitkeep
 input/escolas.xlsx
 input/municipios.xlsx
 # Created by https://www.gitignore.io/api/node,linux,macos,windows
