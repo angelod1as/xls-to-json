@@ -16,7 +16,10 @@ const structureCity = async (sheet, progressBar) => {
 		let municipio = '';
 
 		if (line['Código do município'] === 3550308) {
-			municipio = `city-${line['Código do município']}-${line.Zona}`;
+			municipio = `city-${line['Código do município']}-${line.Zona ? line.Zona.toLowerCase() : ''}`;
+			if (line.Zona === undefined || line.Zona === 'undefined') {
+				console.log(line);
+			}
 		} else {
 			municipio = `city-${line['Código do município']}`;
 		}

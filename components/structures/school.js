@@ -60,8 +60,8 @@ const structureSchool = async (sheet, progressBar) => {
 			},
 			avg: {
 				enem: {
-					quiz: tran.quiz ? tran.quiz : line['ENEM 2018 provas objetivas'],
-					essay: tran.essay ? tran.essay : line['ENEM 2018 redação'],
+					quiz: tran.quiz ? tran.quiz : line['Enem 2018 - provas objetivas'],
+					essay: tran.essay ? tran.essay : line['Enem 2018 - redação'],
 				},
 				students: {
 					fundamental: tran.students ? tran.students : line['Média de alunos / turma (ensino fundamental)'],
@@ -93,16 +93,16 @@ const structureSchool = async (sheet, progressBar) => {
 				},
 				saeb: {
 					ef5: {
-						lp: tran.avg_saeb_2017_5EF_lp ? tran.avg_saeb_2017_5EF_lp : line['Saeb 2017 (média - 5º ano -português)'],
-						mt: tran.avg_saeb_2017_5EF_mt ? tran.avg_saeb_2017_5EF_mt : line['Saeb 2017 (média - 5º ano -matemática)'],
+						lp: line['Saeb 2017 (média - 5º ano -português)'],
+						mt: line['Saeb 2017 (média - 5º ano -matemática)'],
 					},
 					ef9: {
-						lp: tran.avg_saeb_2017_9EF_lp ? tran.avg_saeb_2017_9EF_lp : line['Saeb 2017 (média - 9º ano -português)'],
-						mt: tran.avg_saeb_2017_9EF_mt ? tran.avg_saeb_2017_9EF_mt : line['Saeb 2017 (média - 9º ano -matemática)'],
+						lp: line['Saeb 2017 (média - 9º ano -português)'],
+						mt: line['Saeb 2017 (média - 9º ano -matemática)'],
 					},
 					em3 :{
-						lp: tran.avg_saeb_2017_3EM_lp ? tran.avg_saeb_2017_3EM_lp : line['Saeb 2017 (média - 3º ano do médio -português)'],
-						mt: tran.avg_saeb_2017_3EM_mt ? tran.avg_saeb_2017_3EM_mt : line['Saeb 2017 (média - 3º ano do médio - matemática)'],
+						lp: line['Saeb 2017 (média - 3º ano do médio -português)'],
+						mt: line['Saeb 2017 (média - 3º ano do médio - matemática)'],
 					},
 				},
 			},
