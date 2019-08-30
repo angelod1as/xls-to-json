@@ -61,7 +61,7 @@ const run = async () => {
 	};
 
 	if (process.env.NODE_ENV === 'development') {
-		const answers = ['municipios.xlsx'];
+		const answers = ['escolas.xlsx'];
 		inPrompt(answers);
 	} else {
 		prompt.run()
