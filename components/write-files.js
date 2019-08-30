@@ -4,6 +4,8 @@ const fs = require('fs').promises;
 const filesize = require('filesize');
 const path = require('path');
 
+const spCode = '3550308';
+
 const writeFiles = async (array, output) => {
 
 	// eslint-disable-next-line
@@ -28,7 +30,14 @@ const writeFiles = async (array, output) => {
 
 		for (let i = 0; i < keys.length; i += 1) {
 			const key = keys[i];
-			const string = JSON.stringify(obj[key]);
+			let res = {};
+			if (key.includes(spCode)) {
+				res = {...obj[key], ...obj['city-3550308-semzona']};
+			} else {
+				res = obj[key];
+			}
+
+			const string = JSON.stringify(res);
 			// create folder name
 			const dirpath = path.join(output, folder);
 			// create folders in system
@@ -36,14 +45,13 @@ const writeFiles = async (array, output) => {
 			// create filename
 			const newName = `${key}.json`.toLowerCase();
 			// create each file
-			await fs.writeFile(path.join(dirpath, newName), string);
-			const {size} = await fs.stat(path.join(dirpath, newName));
-
-			if (size > bigger) bigger = size;
-
+			if (key !== 'city-3550308-semzona') {
+				await fs.writeFile(path.join(dirpath, newName), string);
+				const {size} = await fs.stat(path.join(dirpath, newName));
+				if (size > bigger) bigger = size;
+			}
 			progressBar.increment();
-			// eslint-disable-next-line
-			// console.log(`\t\tfile ${i + 1}/${keys.length} => ${newName} => ${size}`);
+
 		}
 		progressBar.stop();
 		// eslint-disable-next-line
