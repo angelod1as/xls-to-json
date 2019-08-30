@@ -7,14 +7,14 @@ const structureStates = async (sheet, progressBar) => {
 	for (let i = 0; i < sheet.length; i += 1) {
 		progressBar.increment();
 		const line = sheet[i];
-		const uf = `state-${line.UF}`;
+		const uf = `uf-${line.UF}`;
 
-		// create empty object for each state
+		// create empty object for each uf
 		if (!obj[uf]) {
 			obj[uf] = {};
 		}
 
-		// populate states
+		// populate ufs
 		obj[uf][line['Código do município']] = {
 			city_name: line['Município'],
 		};

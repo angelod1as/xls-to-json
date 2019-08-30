@@ -14,7 +14,7 @@ const structureAverages = async (sheet, progressBar) => {
 		// Transforming repeating data into numbers
 		// const tran = transformer(line);
 
-		// create empty object for each state
+		// create empty object for each uf
 		if (!obj[uf]) {
 			obj[line['Código do município']] = {};
 		}
@@ -45,7 +45,7 @@ const structureAverages = async (sheet, progressBar) => {
 			};
 		};
 
-		// populate states
+		// populate ufs
 		obj[line['Código do município']] = {
 			code: line['Código do município'],
 			city_name: line['Município'],

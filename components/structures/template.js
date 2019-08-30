@@ -1,5 +1,5 @@
 const _cliProgress = require('cli-progress');
-const states = require('./states');
+const ufs = require('./ufs');
 const avgs = require('./avgs');
 const city = require('./city');
 const school = require('./school');
@@ -18,8 +18,8 @@ const template = async (sheet, folder) => {
 
 	let structure;
 
-	if (folder === 'states') {
-		structure = await states(sheet, progressBar);
+	if (folder === 'ufs') {
+		structure = await ufs(sheet, progressBar);
 	} else if (folder === 'avgs') {
 		structure = await avgs(sheet, progressBar);
 	} else if (folder === 'city') {

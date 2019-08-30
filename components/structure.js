@@ -4,7 +4,7 @@ const structure = async (sheet, filename) => {
 	const array = [];
 
 	if (filename === 'municipios') {
-		array.push(await template(sheet, 'states'));
+		array.push(await template(sheet, 'ufs'));
 		array.push(await template(sheet, 'avgs'));
 	} else if (filename === 'escolas') {
 		array.push(await template(sheet, 'city'));

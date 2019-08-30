@@ -29,7 +29,7 @@ const structureSchool = async (sheet, progressBar) => {
 			address: {
 				uf_code: tran.uf_code ? tran.uf_code : line['Código da UF'],
 				uf: tran.uf ? tran.uf : line.UF,
-				state: tran.state ? tran.state : line.Estado,
+				uf: tran.uf ? tran.uf : line.Estado,
 				city_code: tran.city_code ? tran.city_code : line['Código do município'],
 				city: tran.city ? tran.city : line['Município'],
 				location: tran.location ? tran.location : line['Localização'],
