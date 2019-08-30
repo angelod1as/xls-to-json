@@ -1,5 +1,5 @@
 // Author: Angelo Dias
-// Version: 0.0.1
+// Version: 0.1.0
 const path = require('path');
 const { MultiSelect } = require('enquirer');
 const fs = require('fs').promises;
@@ -61,7 +61,7 @@ const run = async () => {
 	};
 
 	if (process.env.NODE_ENV === 'development') {
-		const answers = ['escolas.xlsx'];
+		const answers = ['municipios.xlsx'];
 		inPrompt(answers);
 	} else {
 		prompt.run()

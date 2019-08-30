@@ -1,4 +1,4 @@
-const transformer = require('./transformer');
+// const transformer = require('./transformer');
 
 // builds json structure
 const structureAverages = async (sheet, progressBar) => {
@@ -19,6 +19,32 @@ const structureAverages = async (sheet, progressBar) => {
 			obj[line['Código do município']] = {};
 		}
 
+		// separate public and private avgs
+		const getNumbers = (fm, pp) => {
+			// fm = fundamental or medio
+			return {
+				students: line[`${pp}_Média alunos/ turma Ensino ${fm}`],
+				age_distortion_rate: line[`${pp}_Taxa distorção idade série Ensino ${fm}`],
+				hour_class: line[`${pp}_Média horas/aula diária Ensino ${fm}`],
+				teacher_percent: line[`${pp}_% Docentes curso superior Ensino ${fm}`],
+				approval_rate: line[`${pp}_Taxa de aprovação Ensino ${fm}`],
+				reproval_rate: line[`${pp}_Taxa de reprovação Ensino ${fm}`],
+				abandon_rate: line[`${pp}_Taxa de abandono Ensino ${fm}`],
+			};
+		};
+
+		const getTypes = (pp) => {
+			// pp = public or private
+			return {
+				enem: {
+					quiz: line[`${pp}_ENEM 2018 provas objetivas`],
+					essay: line[`${pp}_ENEM 2018 redação`],
+				},
+				fundamental: getNumbers('Fundamental', pp),
+				médio: getNumbers('Médio', pp),
+			};
+		};
+
 		// populate states
 		obj[line['Código do município']] = {
 			code: line['Código do município'],
@@ -27,38 +53,6 @@ const structureAverages = async (sheet, progressBar) => {
 			uf: line.UF,
 			uf_name: line.Estado,
 			avg: {
-				enem: {
-					quiz: line['Enem 2018 - provas objetivas'],
-					essay: line['Enem 2018 - redação'],
-				},
-				students: {
-					fundamental: line['Média de alunos / turma (ensino fundamental)'],
-					medio: line['Média de alunos / turma (ensino médio)']
-				},
-				hour_class: {
-					fundamental: line['Média horas/aula diária (ensino fundamental)'],
-					medio: line['Média horas/aula diária (ensino médio)']
-				},
-				age_distortion_rate: {
-					fundamental: line['Taxa distorção idade-série (ensino fundamental)'],
-					medio: line['Taxa distorção idade-série (ensino médio)']
-				},
-				teacher_percent: {
-					fundamental: line['% de docentes com curso superior (ensino fundamental)'],
-					medio: line['% de docentes com curso superior (ensino médio)']
-				},
-				approval_rate: {
-					fundamental: line['Taxa de aprovação (ensino fundamental)'],
-					medio: line['Taxa de aprovação (ensino médio)']
-				},
-				reproval_rate: {
-					fundamental: line['Taxa de reprovação (ensino fundamental)'],
-					medio: line['Taxa de reprovação (ensino médio)']
-				},
-				abandon_rate: {
-					fundamental: line['Taxa de abandono (ensino fundamental)'],
-					medio: line['Taxa de abandono (ensino médio)']
-				},
 				saeb: {
 					ef5: {
 						lp: line['Saeb 2017 (média - 5º ano -português)'],
@@ -70,9 +64,11 @@ const structureAverages = async (sheet, progressBar) => {
 					},
 					em3 :{
 						lp: line['Saeb 2017 (média - 3º ano do médio -português)'],
-						mt: line['Saeb 2017 (média - 3º ano do médio - matemática)'],
+						mt: line['Saeb 2017 (média - 3º ano do médio -matemática)'],
 					},
 				},
+				public: getTypes('Pública'),
+				private: getTypes('Privada'),
 			},
 		};
 	}
