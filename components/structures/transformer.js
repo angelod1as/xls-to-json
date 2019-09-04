@@ -21,16 +21,18 @@ const transformer = (line) => {
 		english: lower(line['Disciplina de inglês']) === 'não' ? 1 : 2,
 		spanish: lower(line['Disciplina de espanhol']) === 'não' ? 1 : 2,
 		french: lower(line['Disciplina de francês']) === 'não' ? 1 : 2,
+		type: 1,
+		zone: 1,
 	};
 
 	if (lower(line.Tipo) === 'privada') {
-		tran.type = 0;
-	} else if (lower(line.Tipo) === 'federal') {
 		tran.type = 1;
-	} else if (lower(line.Tipo) === 'estadual') {
+	} else if (lower(line.Tipo) === 'federal') {
 		tran.type = 2;
-	} else {
+	} else if (lower(line.Tipo) === 'estadual') {
 		tran.type = 3;
+	} else {
+		tran.type = 4;
 	}
 
 	if (lower(line.Zona) === 'centro') {
