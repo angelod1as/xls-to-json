@@ -33,12 +33,12 @@ const structureCity = async (sheet, progressBar) => {
 
 		// populate city with schools
 		obj[municipio][line['Código da entidade']] = {
-			// code: tran.code ? tran.code : line['Código da entidade'],
+			code: line['Código da entidade'],
 			name: tran.name ? tran.name : line['Nome da escola'],
 			public_private: tran.public_private ? tran.public_private : line['Pública ou privada'],
 			type: tran.type ? tran.type : line.Tipo,
 			address: {
-				// city_code: tran.city_code ? tran.city_code : line['Código do município'],
+				city_code: line['Código do município'],
 				city: tran.city ? tran.city : line['Município'],
 				location: tran.location ? tran.location : line['Localização'],
 				// address_type: tran.address_type ? tran.address_type : line['Tipo de logradouro'],
