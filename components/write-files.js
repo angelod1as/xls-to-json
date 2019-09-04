@@ -56,6 +56,8 @@ const writeFiles = async (array, output) => {
 		progressBar.stop();
 		// eslint-disable-next-line
 		console.log(`\n\t\t bigger file: ${filesize(bigger)}\n`);
+		// eslint-disable-next-line
+		console.log(`\n\t\t ${keys.length} files written\n`);
 	}
 	// eslint-disable-next-line
 	console.log('\n\t...Finished writing files\n');

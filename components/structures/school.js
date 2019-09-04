@@ -20,6 +20,19 @@ const structureSchool = async (sheet, progressBar) => {
 		// Transforming repeating data into numbers
 		const tran = transformer(line);
 
+		const getNumbers = (fm) => {
+			// fm = fundamental or medio
+			return {
+				students: line[`Média de alunos / turma (ensino ${fm})`],
+				age_distortion_rate: line[`Taxa distorção idade-série (ensino ${fm})`],
+				hour_class: line[`Média horas/aula diária (ensino ${fm})`],
+				teacher_percent: line[`% de docentes com curso superior (ensino ${fm})`],
+				approval_rate: line[`Taxa de aprovação (ensino ${fm})`],
+				reproval_rate: line[`Taxa de reprovação (ensino ${fm})`],
+				abandon_rate: line[`Taxa de abandono (ensino ${fm})`],
+			};
+		};
+
 		// populate school
 		obj[school] = {
 			code: tran.code ? tran.code : line['Código da entidade'],
@@ -59,38 +72,6 @@ const structureSchool = async (sheet, progressBar) => {
 				medio: tran.medio ? tran.medio : line['Ensino médio'],
 			},
 			avg: {
-				enem: {
-					quiz: tran.quiz ? tran.quiz : line['Enem 2018 - provas objetivas'],
-					essay: tran.essay ? tran.essay : line['Enem 2018 - redação'],
-				},
-				students: {
-					fundamental: tran.students ? tran.students : line['Média de alunos / turma (ensino fundamental)'],
-					medio: tran.students ? tran.students : line['Média de alunos / turma (ensino médio)']
-				},
-				hour_class: {
-					fundamental: tran.hour_class ? tran.hour_class : line['Média horas/aula diária (ensino fundamental)'],
-					medio: tran.hour_class ? tran.hour_class : line['Média horas/aula diária (ensino médio)']
-				},
-				age_distortion_rate: {
-					fundamental: tran.age_distortion_rate ? tran.age_distortion_rate : line['Taxa distorção idade-série (ensino fundamental)'],
-					medio: tran.age_distortion_rate ? tran.age_distortion_rate : line['Taxa distorção idade-série (ensino médio)']
-				},
-				teacher_percent: {
-					fundamental: tran.teacher_percent ? tran.teacher_percent : line['% de docentes com curso superior (ensino fundamental)'],
-					medio: tran.teacher_percent ? tran.teacher_percent : line['% de docentes com curso superior (ensino médio)']
-				},
-				approval_rate: {
-					fundamental: tran.approval_rate ? tran.approval_rate : line['Taxa de aprovação (ensino fundamental)'],
-					medio: tran.approval_rate ? tran.approval_rate : line['Taxa de aprovação (ensino médio)']
-				},
-				reproval_rate: {
-					fundamental: tran.reproval_rate ? tran.reproval_rate : line['Taxa de reprovação (ensino fundamental)'],
-					medio: tran.reproval_rate ? tran.reproval_rate : line['Taxa de reprovação (ensino médio)']
-				},
-				abandon_rate: {
-					fundamental: tran.abandon_rate ? tran.abandon_rate : line['Taxa de abandono (ensino fundamental)'],
-					medio: tran.abandon_rate ? tran.abandon_rate : line['Taxa de abandono (ensino médio)']
-				},
 				saeb: {
 					ef5: {
 						lp: line['Saeb 2017 (média - 5º ano -português)'],
@@ -105,6 +86,12 @@ const structureSchool = async (sheet, progressBar) => {
 						mt: line['Saeb 2017 (média - 3º ano do médio - matemática)'],
 					},
 				},
+				enem: {
+					quiz: tran.quiz ? tran.quiz : line['Enem 2018 - provas objetivas'],
+					essay: tran.essay ? tran.essay : line['Enem 2018 - redação'],
+				},
+				fundamental: getNumbers('fundamental'),
+				medio: getNumbers('médio'),
 			},
 			languages: {
 				english: tran.english ? tran.english : line['Disciplina de inglês'],
