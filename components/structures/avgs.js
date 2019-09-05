@@ -41,7 +41,7 @@ const structureAverages = async (sheet, progressBar) => {
 					essay: line[`${pp}_ENEM 2018 redação`],
 				},
 				fundamental: getNumbers('Fundamental', pp),
-				médio: getNumbers('Médio', pp),
+				medio: getNumbers('Médio', pp),
 			};
 		};
 
